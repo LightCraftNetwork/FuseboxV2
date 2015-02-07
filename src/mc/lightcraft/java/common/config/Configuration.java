@@ -18,11 +18,19 @@ public class Configuration {
     private String fname = null;
     private boolean changed = false;
 
+    /**
+     * Creates a new Configuration instance based around provided information
+     * @param plugin The plugin that this Configuration applies to
+     * @param filename the path to the file you want the configuration of (origin folder is equal to plugin.getDataFolder())
+     */
     public Configuration(JavaPlugin plugin, String filename) {
         this.plugin = plugin;
         this.fname = filename;
     }
 
+    /**
+     * Re-loads the current configuration file with the defaults for the file. Defaults are loaded via a data stream that is created by pathing to the file within the jar. The file jar path should be equivalent to the files configuration path. If the jar path is null, the no defaults are applied.
+     */
     public void ReloadConfig() {
         if (this.file == null) {
             this.file = new File(this.plugin.getDataFolder(), this.fname);
@@ -37,6 +45,10 @@ public class Configuration {
         }
     }
 
+    /**
+     * Returns the fileConfiguration of the file that this Configuration class was instantiated around
+     * @return the FileConfiguration of the file you instantiated this class around
+     */
     public FileConfiguration GetConfig() {
         if (this.conf == null) {
             ReloadConfig();
@@ -44,6 +56,10 @@ public class Configuration {
         return this.conf;
     }
 
+    /**
+     * Saves all changes to the Configuration file if possible
+     * @return if the save was successful
+     */
     public boolean SaveConfig() {
         if ((this.conf == null) || (this.file == null)) {
             return false;
@@ -58,10 +74,17 @@ public class Configuration {
         return false;
     }
 
+    /**
+     * Marks the config file as changed
+     */
     public void setChanged() {
         if(!changed)changed=true;
     }
 
+    /**
+     * Checks if the file is changed
+     * @return true if the file is changed
+     */
     public boolean getChanged() {
         return changed;
     }
