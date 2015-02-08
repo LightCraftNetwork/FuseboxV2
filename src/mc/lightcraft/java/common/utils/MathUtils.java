@@ -5,8 +5,8 @@ package mc.lightcraft.java.common.utils;
  * @author Jacob
  *
  */
-public class UtilMath {
-	private UtilMath() {} // Private constructor - This class is only meant to be accessed statically
+public class MathUtils {
+	private MathUtils() {} // Private constructor - This class is only meant to be accessed statically
 	
 	/**
 	 * @param angle The angle you want the cosecant of, in radians
