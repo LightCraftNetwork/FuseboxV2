@@ -110,10 +110,9 @@ public class AudioUtils {
 	 */
 	public static void playCustomSound(Player player, String sound, float vol,
 			float pitch) {
-		Player p = player;
 		PacketPlayOutNamedSoundEffect packet = new PacketPlayOutNamedSoundEffect(
-				sound, p.getLocation().getBlockX(),
-				p.getLocation().getBlockY(), p.getLocation().getBlockZ(), vol,
+				sound, player.getLocation().getBlockX(),
+				player.getLocation().getBlockY(), player.getLocation().getBlockZ(), vol,
 				pitch);
 		NMSUtils.sendPacket(player, packet);
 	}
