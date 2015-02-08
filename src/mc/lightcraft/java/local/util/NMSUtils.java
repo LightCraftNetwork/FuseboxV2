@@ -5,17 +5,23 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public class NMSUtils {
+
+	private NMSUtils() {
+	}
 
 	private static String version = getVersion();
 
 	/**
 	 * Get the current Bukkit version
+	 * 
 	 * @return the current version
 	 */
 	public static String getVersion() {
-		if(version!=null)return version;
+		if (version != null)
+			return version;
 		String name = Bukkit.getServer().getClass().getPackage().getName();
 		String version = name.substring(name.lastIndexOf('.') + 1) + ".";
 		return version;
@@ -23,7 +29,9 @@ public class NMSUtils {
 
 	/**
 	 * Get the net.minecraft.server class
-	 * @param className the name of the class you want
+	 * 
+	 * @param className
+	 *            the name of the class you want
 	 * @return the chosen class or null if the class does not exist
 	 */
 	public static Class<?> getNMSClass(String className) {
@@ -36,11 +44,13 @@ public class NMSUtils {
 		}
 		return clazz;
 	}
-	
+
 	/**
 	 * Get the org.bukkit.craftbukkit class of chosen name
-	 * @param className name of the class you want
-	 * @return  the chosen class or null if the class does not exist
+	 * 
+	 * @param className
+	 *            name of the class you want
+	 * @return the chosen class or null if the class does not exist
 	 */
 	public static Class<?> getOBCClass(String className) {
 		String fullName = "org.bukkit.craftbukkit." + getVersion() + className;
@@ -55,7 +65,9 @@ public class NMSUtils {
 
 	/**
 	 * Returns the NMS/OBC handle of chosen object
-	 * @param obj the object you want the handle of
+	 * 
+	 * @param obj
+	 *            the object you want the handle of
 	 * @return the handle of the object, already invoked
 	 */
 	public static Object getHandle(Object obj) {
@@ -66,12 +78,12 @@ public class NMSUtils {
 			return null;
 		}
 	}
-	
-
 
 	/**
 	 * Returns the NMS/OBC handle of chosen block object
-	 * @param obj the block object you want the handle of
+	 * 
+	 * @param obj
+	 *            the block object you want the handle of
 	 * @return the handle of the object, already invoked
 	 */
 	public static Object getBlockHandle(Object obj) {
@@ -85,15 +97,19 @@ public class NMSUtils {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * 
-	 * @param clazz Class you want to check
-	 * @param name Name of the field
+	 * @param clazz
+	 *            Class you want to check
+	 * @param name
+	 *            Name of the field
 	 * @return The field, if available
-	 * @throws Exception Can throw an exception if the field is not found or this class does not have permission to check
+	 * @throws Exception
+	 *             Can throw an exception if the field is not found or this
+	 *             class does not have permission to check
 	 */
-	public static Field getField(Class<?> clazz, String name) throws Exception{
+	public static Field getField(Class<?> clazz, String name) throws Exception {
 		Field field = clazz.getDeclaredField(name);
 		field.setAccessible(true);
 		Field modifiersField = Field.class.getDeclaredField("modifiers");
@@ -106,20 +122,30 @@ public class NMSUtils {
 
 	/**
 	 * Request a method from a chosen class file
-	 * @param clazz the class you want to check
-	 * @param name the name of the method you desire
-	 * @param args Arguments needed for method invocation (eg integer.class, String.class)
-	 * @return the method with the specified name and argument classes, if available
+	 * 
+	 * @param clazz
+	 *            the class you want to check
+	 * @param name
+	 *            the name of the method you desire
+	 * @param args
+	 *            Arguments needed for method invocation (eg integer.class,
+	 *            String.class)
+	 * @return the method with the specified name and argument classes, if
+	 *         available
 	 */
 	public static Method getMethod(Class<?> clazz, String name,
 			Class<?>... args) {
 		for (Method m : clazz.getMethods())
-			if (m.getName().equals(name) && (args.length == 0 || ClassListEqual(args, m.getParameterTypes()))) {
+			if (m.getName().equals(name)
+					&& (args.length == 0 || ClassListEqual(args,
+							m.getParameterTypes()))) {
 				m.setAccessible(true);
 				return m;
 			}
 		for (Method m : clazz.getDeclaredMethods())
-			if (m.getName().equals(name) && (args.length == 0 || ClassListEqual(args, m.getParameterTypes()))) {
+			if (m.getName().equals(name)
+					&& (args.length == 0 || ClassListEqual(args,
+							m.getParameterTypes()))) {
 				m.setAccessible(true);
 				return m;
 			}
@@ -128,8 +154,11 @@ public class NMSUtils {
 
 	/**
 	 * Compare two class arrays to make sure they match
-	 * @param l1 Forsu class array
-	 * @param l2 second class array
+	 * 
+	 * @param l1
+	 *            Forsu class array
+	 * @param l2
+	 *            second class array
 	 * @return true if the arrays match, otherwise false
 	 */
 	public static boolean ClassListEqual(Class<?>[] l1, Class<?>[] l2) {
@@ -142,6 +171,28 @@ public class NMSUtils {
 				break;
 			}
 		return equal;
+	}
+
+	/**
+	 * Send a packet to a play via use of NMS
+	 * 
+	 * @param player
+	 *            the player you want to send the packet to
+	 * @param packet
+	 *            the packet that you wish to send
+	 */
+	public static void sendPacket(Player player, Object packet) {
+		try {
+			Object nmsPlayer = NMSUtils.getHandle(player);
+			Field con_field = nmsPlayer.getClass().getField("playerConnection");
+			con_field.setAccessible(true);
+			Object con = con_field.get(nmsPlayer);
+			Method sendToPlayer = con.getClass().getMethod("sendPacket",
+					NMSUtils.getNMSClass("Packet"));
+			sendToPlayer.invoke(con, packet);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -1,5 +1,7 @@
 package mc.lightcraft.java.common.utils;
 
+import java.text.DecimalFormat;
+
 /**
  * 
  * @author Jacob
@@ -7,6 +9,23 @@ package mc.lightcraft.java.common.utils;
  */
 public class MathUtils {
 	private MathUtils() {} // Private constructor - This class is only meant to be accessed statically
+
+	
+	/**
+	 * 
+	 * @param degree
+	 * @param d
+	 * @return
+	 */
+	public static double trim(int degree, double d) {
+		String format = "#.#";
+
+		for (int i = 1; i < degree; i++) {
+			format = format + "#";
+		}
+		DecimalFormat twoDForm = new DecimalFormat(format);
+		return Double.valueOf(twoDForm.format(d)).doubleValue();
+	}
 	
 	/**
 	 * @param angle The angle you want the cosecant of, in radians
