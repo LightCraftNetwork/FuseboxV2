@@ -39,8 +39,8 @@ public class Configuration {
 
         InputStream isDefaults = this.plugin.getResource(this.fname);
         if (isDefaults != null) {
-            @SuppressWarnings("deprecation")
-            YamlConfiguration confDefault = YamlConfiguration.loadConfiguration(isDefaults);
+            @SuppressWarnings("deprecation") // This is only here because these is no workaround
+			YamlConfiguration confDefault = YamlConfiguration.loadConfiguration(isDefaults);
             this.conf.setDefaults(confDefault);
         }
     }

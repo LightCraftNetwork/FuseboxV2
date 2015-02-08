@@ -1,0 +1,6 @@
+The objective of this project is to bring all of the parts of Fusebox (its local, common, and remote aspects) together in an easy-to-use, intuitive, and managable API.
+This API will be divided into three main sections: LOCAL, COMMON, and REMOTE.
+
+> LOCAL: All code that depends or relies on Spiggot
+> REMOTE: Code used for connecting with things like BungeeCord or MySQL
+> Common: Code usable for both local and remote that does NOT require any jars to function.
