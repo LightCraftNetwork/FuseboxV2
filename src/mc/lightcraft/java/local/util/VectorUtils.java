@@ -12,7 +12,7 @@ public class VectorUtils {
 	/**
 	 * Get the vector for 'bumping" an entity away from a location
 	 * @param entity the entity you are wanting bumped
-	 * @param from the place you want them bumbed away from
+	 * @param from the place you want them bumped away from
 	 * @param power how hard you want them to be bumped
 	 * @return the vector required to bump them away
 	 */
