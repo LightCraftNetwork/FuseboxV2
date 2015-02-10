@@ -92,4 +92,43 @@ public class RankTree {
 		ram.remove(p.getUniqueId());
 	}
 
+	/**
+	 * Get the colour of a rank
+	 * 
+	 * @param r
+	 *            The rank you want the colour of
+	 */
+	public static String getColor(ServerRank r) {
+		try {
+			switch (r) {
+			case Default:
+				return "§7";
+			case VIP:
+				return "§b";
+			case Blaze:
+				return "§6";
+			case Aurora:
+				return "§e";
+			case Helper:
+				return "§d";
+			case Mod:
+				return "§a";
+			case Admin:
+				return "§c";
+			case Developer:
+				return "§c";
+			case BuildTeam:
+				return "§c";
+			case Owner:
+				return "§3";
+			case CoOwner:
+				return "§3";
+			default:
+				return "§7";
+			}
+		} catch (Exception ex) {
+			return "§7";
+		}
+	}
+
 }
