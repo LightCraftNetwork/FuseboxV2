@@ -42,7 +42,7 @@ public class RankTree {
 	 * @param r
 	 *            The permission's rank/checking against
 	 */
-	public static boolean hasRank(ServerRank player, ServerRank r) {
+	public boolean hasRank(ServerRank player, ServerRank r) {
 		if (player.toString().equalsIgnoreCase(r.toString()))
 			return true;
 		for (ServerRank r5 : ServerRank.values()) {
@@ -89,7 +89,8 @@ public class RankTree {
 	 *            The player you would like to unload from RAM.
 	 */
 	public void unloadRank(OfflinePlayer p) {
-		ram.remove(p.getUniqueId());
+		if (ram.containsKey(p.getUniqueId()))
+			ram.remove(p.getUniqueId());
 	}
 
 	/**
@@ -98,7 +99,7 @@ public class RankTree {
 	 * @param r
 	 *            The rank you want the colour of
 	 */
-	public static String getColor(ServerRank r) {
+	public String getColor(ServerRank r) {
 		try {
 			switch (r) {
 			case Default:

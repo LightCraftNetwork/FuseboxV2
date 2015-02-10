@@ -4,7 +4,7 @@ import org.bukkit.OfflinePlayer;
 
 public class UtilQuery {
 
-	public UtilQuery() {
+	private UtilQuery() {
 	}
 
 	/**
@@ -14,7 +14,7 @@ public class UtilQuery {
 	 *            The player you want to act on
 	 * @return Formatted query
 	 */
-	public String getCoinsQuery(OfflinePlayer p) {
+	public static String getCoinsQuery(OfflinePlayer p) {
 		return "retrieve players/coins " + p.getUniqueId().toString();
 	}
 
@@ -27,7 +27,7 @@ public class UtilQuery {
 	 *            The amount you want to set the value to.
 	 * @return Formatted query
 	 */
-	public String setCoinsQuery(OfflinePlayer p, long amount) {
+	public static String setCoinsQuery(OfflinePlayer p, long amount) {
 		return "insert players/coins " + p.getUniqueId().toString() + " "
 				+ amount;
 	}
@@ -39,7 +39,7 @@ public class UtilQuery {
 	 *            The player you want to act on
 	 * @return Formatted query
 	 */
-	public String getTokensQuery(OfflinePlayer p) {
+	public static String getTokensQuery(OfflinePlayer p) {
 		return "retrieve players/tokens " + p.getUniqueId().toString();
 	}
 
@@ -52,7 +52,7 @@ public class UtilQuery {
 	 *            The amount you want to set the value to.
 	 * @return Formatted query
 	 */
-	public String setTokensQuery(OfflinePlayer p, long amount) {
+	public static String setTokensQuery(OfflinePlayer p, long amount) {
 		return "insert players/tokens " + p.getUniqueId().toString() + " "
 				+ amount;
 	}
@@ -64,7 +64,7 @@ public class UtilQuery {
 	 *            The player you want to act on
 	 * @return Formatted query
 	 */
-	public String getRankQuery(OfflinePlayer p) {
+	public static String getRankQuery(OfflinePlayer p) {
 		return "retrieve players/rank " + p.getUniqueId().toString();
 	}
 
@@ -77,7 +77,7 @@ public class UtilQuery {
 	 *            The rank you want to set the value to.
 	 * @return Formatted query
 	 */
-	public String setRankQuery(OfflinePlayer p, String rank) {
+	public static String setRankQuery(OfflinePlayer p, String rank) {
 		return "insert players/rank " + p.getUniqueId().toString() + " " + rank;
 	}
 
@@ -88,7 +88,7 @@ public class UtilQuery {
 	 *            The player you want to act on
 	 * @return Formatted query
 	 */
-	public String getBannedQuery(OfflinePlayer p) {
+	public static String getBannedQuery(OfflinePlayer p) {
 		return "retrieve players/isBanned " + p.getUniqueId().toString();
 	}
 
@@ -101,7 +101,7 @@ public class UtilQuery {
 	 *            The value you want to set the value to.
 	 * @return Formatted query
 	 */
-	public String setBannedQuery(OfflinePlayer p, String value) {
+	public static String setBannedQuery(OfflinePlayer p, String value) {
 		return "insert players/isBanned " + p.getUniqueId().toString() + " "
 				+ value;
 	}
