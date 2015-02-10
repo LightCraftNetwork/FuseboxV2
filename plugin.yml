@@ -1,4 +1,4 @@
 name: FuseboxV2
 version: 0.1
-author: Jacob Ryan
+main: mc.lightcraft.java.FuseBox
 authors: [JRL1004, ArrayPro]
