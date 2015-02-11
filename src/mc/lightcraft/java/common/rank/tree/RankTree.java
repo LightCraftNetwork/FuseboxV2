@@ -111,7 +111,7 @@ public class RankTree {
 			case Aurora:
 				return "§e";
 			case Helper:
-				return "§d";
+				return "§5";
 			case Mod:
 				return "§a";
 			case Admin:
