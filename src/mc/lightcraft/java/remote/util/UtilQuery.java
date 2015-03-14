@@ -80,6 +80,19 @@ public class UtilQuery {
 	public static String setRankQuery(OfflinePlayer p, String rank) {
 		return "insert players/rank " + p.getUniqueId().toString() + " " + rank;
 	}
+	
+	   /**
+     * Prepared query for setting a player's rank
+     * 
+     * @param p
+     *            The player you want to act on
+     * @param rank
+     *            The rank you want to set the value to.
+     * @return Formatted query
+     */
+    public static String setRankQuery(String p, String rank) {
+        return "insert players/rank " + p + " " + rank;
+    }
 
 	/**
 	 * Prepared query for getting a player's ban status

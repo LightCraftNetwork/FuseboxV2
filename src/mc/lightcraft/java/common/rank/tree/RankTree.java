@@ -68,6 +68,7 @@ public class RankTree {
 		}
 		ram.put(p.getUniqueId(), r);
 	}
+	
 
 	/**
 	 * Get a player's rank in RAM, NOT on the database.
