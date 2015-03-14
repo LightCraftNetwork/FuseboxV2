@@ -67,6 +67,18 @@ public class UtilQuery {
 	public static String getRankQuery(OfflinePlayer p) {
 		return "retrieve players/rank " + p.getUniqueId().toString();
 	}
+	
+	   /**
+     * Prepared query for getting a player's rank
+     * 
+     * @param p
+     *            The player you want to act on
+     * @return Formatted query
+     */
+    public static String getRankQuery(String p) {
+        return "retrieve players/rank " + p;
+    }
+
 
 	/**
 	 * Prepared query for setting a player's rank
