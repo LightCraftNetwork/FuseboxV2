@@ -1,6 +1,6 @@
 package mc.lightcraft.java.local.util;
 
-import net.minecraft.server.v1_8_R1.PacketPlayOutNamedSoundEffect;
+import net.minecraft.server.v1_8_R2.PacketPlayOutNamedSoundEffect;
 
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -111,8 +111,8 @@ public class AudioUtils {
 	public static void playCustomSound(Player player, String sound, float vol,
 			float pitch) {
 		PacketPlayOutNamedSoundEffect packet = new PacketPlayOutNamedSoundEffect(
-				sound, player.getLocation().getBlockX(),
-				player.getLocation().getBlockY(), player.getLocation().getBlockZ(), vol,
+				sound, player.getLocation().getBlockX(), player.getLocation()
+						.getBlockY(), player.getLocation().getBlockZ(), vol,
 				pitch);
 		NMSUtils.sendPacket(player, packet);
 	}

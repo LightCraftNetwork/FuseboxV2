@@ -2,6 +2,8 @@ package mc.lightcraft.java.common.utils;
 
 import java.text.DecimalFormat;
 
+import org.bukkit.util.Vector;
+
 /**
  * 
  * @author Jacob
@@ -67,5 +69,19 @@ public class MathUtils {
 		return ans;
 	}
 	
+	/**
+	 * Calculate the magnitude (or length) of a three dimensional vector
+	 * @param vector the vector that you wish to calculate the magnitude of
+	 * @return magnitude of provided vector
+	 */
+	public static double vectorMagnitude(Vector vector) {
+		double a = vector.getX() * vector.getX();
+		double b = vector.getZ() * vector.getZ();
+		// Instead of re-squaring ab and pluging it in, I'm just going to use it's preroot value of A + B and then use C for the Y value.
+		// This should return the magnitude do the the commutative properties of addition
+		double c = vector.getY() * vector.getY();
+		double abc = Math.sqrt(a + b + c);
+		return abc;
+	}
 	
 }
